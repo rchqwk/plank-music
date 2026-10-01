@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0d1018" />
+    <title>Plank Music — Web Player</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      :root { --accent: #e7c85f; --accent-2: #f5d979; }
+      .brand-mark { overflow: hidden; background: #e7c85f; }
+      .brand-mark img { width: 100%; height: 100%; object-fit: cover; object-position: center; transform: scale(1.45); }
+      .brand { letter-spacing: .1em; }
+      footer a { color: inherit; }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#"><span class="brand-mark"><img src="plank-logo.png" alt="" /></span><span>PLANK MUSIC</span></a>
+        <div class="connection"><span id="connectionDot" class="status-dot"></span><span id="connectionLabel">Connecting</span></div>
+      </header>
+
+      <main class="content-grid">
+        <section class="hero panel">
+          <div class="eyebrow">Plank Music</div>
+          <h1>Find a track.<br /><em>Make it yours.</em></h1>
+          <p class="lede">Search the catalog and send music to your shared player.</p>
+          <form id="searchForm" class="search-form">
+            <label class="sr-only" for="searchInput">Search music</label>
+            <input id="searchInput" type="search" placeholder="Search songs, artists, mixes…" autocomplete="off" />
+            <button type="submit" class="primary-button">Search <span>↵</span></button>
+          </form>
+          <div id="searchStatus" class="muted">Try “late night jazz” or an artist name.</div>
+        </section>
+
+        <section class="now-playing panel">
+          <div class="section-heading"><span>Now playing</span><span id="livePill" class="live-pill">IDLE</span></div>
+          <div class="art-wrap"><img id="currentArtwork" alt="Album artwork" /><div id="artFallback" class="art-fallback">♪</div></div>
+          <div class="track-meta"><h2 id="currentTitle">Nothing queued</h2><p id="currentAuthor">Search for something to play</p></div>
+          <div class="progress-row"><span id="elapsed">0:00</span><input id="progress" type="range" min="0" max="100" value="0" /><span id="duration">0:00</span></div>
+          <div class="player-controls"><button data-action="stop" class="icon-button" title="Stop">■</button><button data-action="skip" class="icon-button" title="Previous / skip">↶</button><button id="playPause" data-action="pause" class="play-button" title="Pause">Ⅱ</button><button data-action="skip" class="icon-button" title="Skip">↷</button><button id="volumeButton" class="icon-button" title="Volume">⌁</button></div>
+          <div class="volume-row"><span>VOL</span><input id="volume" type="range" min="0" max="100" value="80" /><span id="volumeValue">80</span></div>
+        </section>
+
+        <section class="results panel"><div class="section-heading"><span>Search results</span><span id="resultCount" class="muted">—</span></div><div id="resultsList" class="results-list"><div class="empty-state">Your results will appear here.</div></div></section>
+        <section class="queue panel"><div class="section-heading"><span>Up next</span><span id="queueCount" class="muted">0 tracks</span></div><div id="queueList" class="queue-list"><div class="empty-state">Queue is clear.</div></div></section>
+      </main>
+      <footer>PLANK MUSIC <span>•</span> connected to your music backend · <a href="/terms.html">Terms</a> · <a href="/privacy.html">Privacy</a></footer>
+    </div>
+    <div id="toast" class="toast" role="status"></div>
+    <audio id="audioPlayer" preload="none"></audio>
+    <script src="app.js"></script>
+  </body>
+</html>

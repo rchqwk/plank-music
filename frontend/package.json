@@ -1,0 +1,11 @@
+{
+  "name": "music-client-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Vite-free static web player for the music backend",
+  "scripts": {
+    "build": "node -e \"console.log('Static frontend: no build step required')\"",
+    "typecheck": "node -e \"console.log('Static frontend: no TypeScript sources')\"",
+    "start": "npx --yes serve . -l 4173"
+  }
+}
